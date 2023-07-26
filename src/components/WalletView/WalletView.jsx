@@ -2,25 +2,18 @@ import { useEffect } from "react";
 import { ethers } from "ethers";
 import { useDispatch, useSelector } from "react-redux";
 import { connect } from "../../redux/wallet/operations";
-import { selectUser, selectIsLoadingCnct } from "../../redux/wallet/selectors";
-import { Loader } from "../Loader/Loader";
-
-import {
-  // WalletBtn,
-  ConnectBtn,
-  AccentData,
-  BoldAccent,
-} from "./WalletView.styled";
+import { selectUser } from "../../redux/wallet/selectors";
+import { ConnectBtn, AccentData, BoldAccent } from "./WalletView.styled";
 
 export const WalletView = () => {
   const dispatch = useDispatch();
-  const isLoading = useSelector(selectIsLoadingCnct);
+
   const { userBalance, userAccount, userChain } = useSelector(selectUser);
 
-  const mobileDevice =
-    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-      navigator.userAgent
-    );
+  // const mobileDevice =
+  //   /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+  //     navigator.userAgent
+  //   );
 
   const formattedBalance = userBalance
     ? Number(ethers.utils.formatEther(userBalance)).toFixed(3)
@@ -49,11 +42,11 @@ export const WalletView = () => {
     dispatch(connect());
   };
 
-  const handleMobileConnect = () => {
-    window.location.href(
-      "https://metamask.app.link/dapp/crypto-wallet-exhk2paek-ihorleonov.vercel.app/"
-    );
-  };
+  // const handleMobileConnect = () => {
+  //   window.location.href(
+  //     "https://metamask.app.link/dapp/crypto-wallet-exhk2paek-ihorleonov.vercel.app/"
+  //   );
+  // };
 
   useEffect(() => {
     if (window.ethereum) {
@@ -63,21 +56,19 @@ export const WalletView = () => {
   }, []);
 
   return (
-    <>
-      <ConnectBtn onClick={handleConnect}>
-        {userAccount && !isLoading ? (
-          <>
-            <BoldAccent>{formattedChain()}</BoldAccent>
-            &nbsp;Balance:&nbsp;
-            <AccentData>{formattedBalance}</AccentData>
-            <BoldAccent>&nbsp;ETH</BoldAccent>
-            &nbsp;Account:&nbsp;
-            <AccentData>{formattedAccount}</AccentData>
-          </>
-        ) : (
-          <>{isLoading ? <Loader width={22} color={"#18d685"} /> : "Connect"}</>
-        )}
-      </ConnectBtn>
-    </>
+    <ConnectBtn onClick={handleConnect}>
+      {userAccount ? (
+        <>
+          <BoldAccent>{formattedChain()}</BoldAccent>
+          &nbsp;Balance:&nbsp;
+          <AccentData>{formattedBalance}</AccentData>
+          <BoldAccent>&nbsp;ETH</BoldAccent>
+          &nbsp;Account:&nbsp;
+          <AccentData>{formattedAccount}</AccentData>
+        </>
+      ) : (
+        "Connect Wallet"
+      )}
+    </ConnectBtn>
   );
 };

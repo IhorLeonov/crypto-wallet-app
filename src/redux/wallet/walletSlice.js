@@ -4,9 +4,10 @@ import { connect, send } from "./operations";
 const initialState = {
   userData: { userAccount: "", userBalance: "", userChain: "" },
   paymentData: { ether: "", address: "", hash: "" },
-  isLoadingCnct: false,
+  isLoading: false,
   isLoadingSend: false,
-  error: null,
+  error: "",
+  message: "",
 };
 
 const connectWalletSlice = createSlice({
@@ -16,28 +17,32 @@ const connectWalletSlice = createSlice({
   extraReducers: (builder) =>
     builder
       .addCase(connect.pending, (state) => {
-        state.isLoadingCnct = true;
+        state.isLoading = true;
       })
       .addCase(connect.fulfilled, (state, action) => {
-        state.isLoadingCnct = false;
-        state.error = null;
+        state.isLoading = false;
+        state.error = "";
         state.userData = action.payload;
+        state.message = "Successful connection!";
       })
       .addCase(connect.rejected, (state, action) => {
-        state.isLoadingCnct = false;
+        state.isLoading = false;
         state.error = action.payload;
+        state.message = "";
       })
       .addCase(send.pending, (state) => {
         state.isLoadingSend = true;
       })
       .addCase(send.fulfilled, (state, action) => {
         state.isLoadingSend = false;
-        state.error = null;
+        state.error = "";
         state.paymentData = action.payload;
+        state.message = "Successful transaction!";
       })
       .addCase(send.rejected, (state, action) => {
         state.isLoadingSend = false;
         state.error = action.payload;
+        state.message = "";
       }),
 });
 

@@ -7,10 +7,7 @@ export const connect = createAsyncThunk(
     try {
       if (!window.ethereum) alert("Install Metamask!");
 
-      const provider = new ethers.providers.Web3Provider(
-        window.web3.currentProvider
-      );
-      console.log(provider);
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
 
       const account = await window.ethereum.request({
         method: "eth_requestAccounts",

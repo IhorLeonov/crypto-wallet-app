@@ -11,12 +11,12 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
-    "axios": "^1.4.0",
     "ethers": "^5.7.2",
     "formik": "^2.4.2",
     "modern-normalize": "^2.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hot-toast": "^2.4.1",
     "react-loader-spinner": "^5.3.4",
     "react-redux": "^8.1.1",
     "styled-components": "^6.0.4"
