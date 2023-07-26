@@ -17,17 +17,10 @@ export const WalletView = () => {
   const isLoading = useSelector(selectIsLoadingCnct);
   const { userBalance, userAccount, userChain } = useSelector(selectUser);
 
-  if (
+  const mobileDevice =
     /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
       navigator.userAgent
-    )
-  ) {
-    // код для мобильных устройств
-    console.log("mobile");
-  } else {
-    // код для обычных устройств
-    console.log("desctop");
-  }
+    );
 
   const formattedBalance = userBalance
     ? Number(ethers.utils.formatEther(userBalance)).toFixed(3)
@@ -56,6 +49,12 @@ export const WalletView = () => {
     dispatch(connect());
   };
 
+  const handleMobileConnect = () => {
+    window.location.replace(
+      "https://metamask.app.link/dapp/crypto-wallet-exhk2paek-ihorleonov.vercel.app/"
+    );
+  };
+
   useEffect(() => {
     if (window.ethereum) {
       window.ethereum.on("accountsChanged", handleConnect);
@@ -75,7 +74,9 @@ export const WalletView = () => {
           <AccentData>{formattedAccount}</AccentData>
         </WalletBox>
       ) : (
-        <ConnectBtn onClick={handleConnect}>
+        <ConnectBtn
+          onClick={mobileDevice ? handleMobileConnect : handleConnect}
+        >
           {isLoading ? <Loader width={22} color={"#18d685"} /> : "Connect"}
         </ConnectBtn>
       )}
