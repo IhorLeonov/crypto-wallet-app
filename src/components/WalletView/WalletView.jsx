@@ -10,10 +10,10 @@ export const WalletView = () => {
 
   const { userBalance, userAccount, userChain } = useSelector(selectUser);
 
-  // const mobileDevice =
-  //   /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-  //     navigator.userAgent
-  //   );
+  const mobileDevice =
+    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+      navigator.userAgent
+    );
 
   const formattedBalance = userBalance
     ? Number(ethers.utils.formatEther(userBalance)).toFixed(3)
@@ -42,11 +42,11 @@ export const WalletView = () => {
     dispatch(connect());
   };
 
-  // const handleMobileConnect = () => {
-  //   window.location.href(
-  //     "https://metamask.app.link/dapp/crypto-wallet-exhk2paek-ihorleonov.vercel.app/"
-  //   );
-  // };
+  const handleMobileConnect = () => {
+    window.location.href(
+      "https://metamask.app.link/dapp/crypto-wallet-app-git-main-ihorleonov.vercel.app/"
+    );
+  };
 
   useEffect(() => {
     if (window.ethereum) {
@@ -56,19 +56,24 @@ export const WalletView = () => {
   }, []);
 
   return (
-    <ConnectBtn onClick={handleConnect}>
-      {userAccount ? (
-        <>
-          <BoldAccent>{formattedChain()}</BoldAccent>
-          &nbsp;Balance:&nbsp;
-          <AccentData>{formattedBalance}</AccentData>
-          <BoldAccent>&nbsp;ETH</BoldAccent>
-          &nbsp;Account:&nbsp;
-          <AccentData>{formattedAccount}</AccentData>
-        </>
-      ) : (
-        "Connect Wallet"
-      )}
-    </ConnectBtn>
+    <>
+      <a href="https://metamask.app.link/dapp/crypto-wallet-app-git-main-ihorleonov.vercel.app/">
+        metamask.app
+      </a>
+      <ConnectBtn onClick={mobileDevice ? handleMobileConnect : handleConnect}>
+        {userAccount ? (
+          <>
+            <BoldAccent>{formattedChain()}</BoldAccent>
+            &nbsp;Balance:&nbsp;
+            <AccentData>{formattedBalance}</AccentData>
+            <BoldAccent>&nbsp;ETH</BoldAccent>
+            &nbsp;Account:&nbsp;
+            <AccentData>{formattedAccount}</AccentData>
+          </>
+        ) : (
+          "Connect Wallet"
+        )}
+      </ConnectBtn>
+    </>
   );
 };
