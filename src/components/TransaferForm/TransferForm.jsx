@@ -62,7 +62,7 @@ export const TransferForm = () => {
             {/* <ErrorMessage name="name" component="span" /> */}
           </FormLabel>
           <FormLabel>
-            Enter token ether:
+            Enter token amount:
             <FormikField
               type="number"
               name="ether"

@@ -17,6 +17,18 @@ export const WalletView = () => {
   const isLoading = useSelector(selectIsLoadingCnct);
   const { userBalance, userAccount, userChain } = useSelector(selectUser);
 
+  if (
+    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+      navigator.userAgent
+    )
+  ) {
+    // код для мобильных устройств
+    console.log("mobile");
+  } else {
+    // код для обычных устройств
+    console.log("desctop");
+  }
+
   const formattedBalance = userBalance
     ? Number(ethers.utils.formatEther(userBalance)).toFixed(3)
     : "";
