@@ -50,7 +50,7 @@ export const WalletView = () => {
   };
 
   const handleMobileConnect = () => {
-    window.location.replace(
+    window.location.href(
       "https://metamask.app.link/dapp/crypto-wallet-exhk2paek-ihorleonov.vercel.app/"
     );
   };
