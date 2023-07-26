@@ -7,7 +7,10 @@ export const connect = createAsyncThunk(
     try {
       if (!window.ethereum) alert("Install Metamask!");
 
-      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const provider = new ethers.providers.Web3Provider(
+        window.web3.currentProvider
+      );
+      console.log(provider);
 
       const account = await window.ethereum.request({
         method: "eth_requestAccounts",
@@ -63,12 +66,3 @@ export const send = createAsyncThunk(
     }
   }
 );
-
-// const startPayment = async ({ address, ether, setError, setTxs }) => {
-//   try {
-
-//   } catch (error) {
-//     console.log("error:", error.message);
-//     // setError(error.message);
-//   }
-// };

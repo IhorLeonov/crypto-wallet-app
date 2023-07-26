@@ -6,7 +6,7 @@ import { selectUser, selectIsLoadingCnct } from "../../redux/wallet/selectors";
 import { Loader } from "../Loader/Loader";
 
 import {
-  WalletBox,
+  // WalletBtn,
   ConnectBtn,
   AccentData,
   BoldAccent,
@@ -64,22 +64,20 @@ export const WalletView = () => {
 
   return (
     <>
-      {userAccount && !isLoading ? (
-        <WalletBox>
-          <BoldAccent>{formattedChain()}</BoldAccent>
-          &nbsp;Balance:&nbsp;
-          <AccentData>{formattedBalance}</AccentData>
-          <BoldAccent>&nbsp;ETH</BoldAccent>
-          &nbsp;Account:&nbsp;
-          <AccentData>{formattedAccount}</AccentData>
-        </WalletBox>
-      ) : (
-        <ConnectBtn
-          onClick={mobileDevice ? handleMobileConnect : handleConnect}
-        >
-          {isLoading ? <Loader width={22} color={"#18d685"} /> : "Connect"}
-        </ConnectBtn>
-      )}
+      <ConnectBtn onClick={handleConnect}>
+        {userAccount && !isLoading ? (
+          <>
+            <BoldAccent>{formattedChain()}</BoldAccent>
+            &nbsp;Balance:&nbsp;
+            <AccentData>{formattedBalance}</AccentData>
+            <BoldAccent>&nbsp;ETH</BoldAccent>
+            &nbsp;Account:&nbsp;
+            <AccentData>{formattedAccount}</AccentData>
+          </>
+        ) : (
+          <>{isLoading ? <Loader width={22} color={"#18d685"} /> : "Connect"}</>
+        )}
+      </ConnectBtn>
     </>
   );
 };

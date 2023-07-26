@@ -8,10 +8,10 @@ function App() {
   return (
     <>
       <Header>
-        <Logo width={40} height={60} />
         <WalletView />
       </Header>
       <Main>
+        <Logo width={40} height={60} />
         <TransferForm />
       </Main>
       <Footer>Github Link</Footer>

@@ -3,8 +3,8 @@ import styled from "styled-components";
 import { Form, Field, ErrorMessage } from "formik";
 
 export const Wrapper = styled.div`
-  width: 500px;
-  height: 350px;
+  height: 300px;
+  width: 270px;
 
   border-radius: 10px;
   border: 1px solid white;
@@ -12,24 +12,44 @@ export const Wrapper = styled.div`
     ${(props) => props.theme.colors.thirdMainColor},
     ${(props) => props.theme.colors.secondMainColor}
   );
+
+  @media screen and (min-width: 375px) {
+    width: 299px;
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 500px;
+    height: 350px;
+  }
 `;
 
 export const Title = styled.h3`
   text-align: center;
-  margin-top: 35px;
+  margin-top: 20px;
+
+  @media screen and (min-width: 768px) {
+    margin-top: 35px;
+  }
 `;
 
 export const FormikForm = styled(Form)`
   display: flex;
   flex-direction: column;
-  width: 350px;
+  width: 100%;
 
   margin-left: auto;
   margin-right: auto;
-  margin-top: 30px;
+  margin-top: 25px;
+
+  @media screen and (min-width: 768px) {
+    margin-top: 30px;
+  }
 `;
 
 export const FormLabel = styled.label`
+  margin-left: auto;
+  margin-right: auto;
+
   &:nth-child(2) {
     margin-top: 10px;
   }
@@ -40,14 +60,23 @@ export const FormikField = styled(Field)`
   align-items: center;
   margin-top: 10px;
   padding: 8px;
-  width: 100%;
+  width: 200px;
   height: 34px;
-  outline: none;
 
   border: none;
   border-radius: 10px;
   transition: all 0.218s ease 0s;
-  placeholder &:hover,
+  outline: none;
+
+  @media screen and (min-width: 375px) {
+    width: 250px;
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 350px;
+  }
+
+  &:hover,
   &:focus {
     outline: 1.5px solid ${(props) => props.theme.colors.firstMainColor};
   }
@@ -61,21 +90,17 @@ export const Button = styled.button`
   justify-content: center;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 40px;
+  margin-top: 25px;
   padding: 0 10px;
 
-  width: 120px;
-  height: 35px;
+  width: 100px;
+  height: 30px;
+  font-size: 14px;
 
-  border: 1px solid ${(props) => props.theme.colors.firstMainColor};
-  border-radius: 10px;
-  background: ${(props) => props.theme.colors.accentColor};
-  color: ${(props) => props.theme.colors.backgroundColor};
-  transition: all 0.218s ease 0s;
-
-  &:hover,
-  &:focus {
-    border-color: ${(props) => props.theme.colors.secondAccentColor};
-    color: white;
+  @media screen and (min-width: 768px) {
+    margin-top: 35px;
+    width: 120px;
+    height: 35px;
+    font-size: 16px;
   }
 `;

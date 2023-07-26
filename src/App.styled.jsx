@@ -4,29 +4,29 @@ export const Header = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-around;
+  padding: 0 15px;
 
   width: 100%;
   height: 50px;
-  padding-left: 30px;
-  padding-right: 30px;
+
+  @media screen and (min-width: 500px) {
+    padding: 0 25px;
+  }
 
   color: ${(props) => props.theme.colors.hederFontColor};
-  background-color: ${(props) => props.theme.colors.backgroundColor};
+  background-color: ${(props) => props.theme.colors.firstMainColor};
+  border-bottom: 1px solid ${(props) => props.theme.colors.secondAccentColor};
 `;
 
 export const Main = styled.main`
   height: calc(100vh - 100px);
   display: flex;
   align-items: center;
-  justify-content: center;
+  flex-direction: column;
 
-  /* background-color: ${(props) => props.theme.colors.firstMainColor}; */
-
-  /* background: linear-gradient(
-    to right,
-    ${(props) => props.theme.colors.firstMainColor},
-    ${(props) => props.theme.colors.secondMainColor}
-  ); */
+  @media screen and (min-width: 768px) {
+    justify-content: center;
+  }
 `;
 
 export const Footer = styled.footer`
@@ -36,6 +36,5 @@ export const Footer = styled.footer`
   justify-content: center;
 
   height: 50px;
-  /* background-color: ${(props) => props.theme.colors.firstMainColor}; */
   color: ${(props) => props.theme.colors.backgroundColor};
 `;

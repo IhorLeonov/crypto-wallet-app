@@ -72,8 +72,15 @@ button {
   font-family: inherit;
   cursor: pointer;
 
-}
+  border-radius: 10px;
+  border: 1px solid #ffffff;
+  background: ${(props) => props.theme.colors.backgroundColor};
+  color: #ffffff;
+  transition: all 0.218s ease 0s;
 
-button:hover {
+  &:hover,&:focus {
+  border-color: ${(props) => props.theme.colors.secondAccentColor};
+  color: ${(props) => props.theme.colors.accentColor};
+}
 }
 `;
