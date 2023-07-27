@@ -3,7 +3,8 @@ import styled from "styled-components";
 import { Form, Field, ErrorMessage } from "formik";
 
 export const Wrapper = styled.div`
-  height: 300px;
+  padding-top: 30px;
+  padding-bottom: 30px;
   width: 270px;
 
   border-radius: 10px;
@@ -19,17 +20,11 @@ export const Wrapper = styled.div`
 
   @media screen and (min-width: 768px) {
     width: 500px;
-    height: 350px;
   }
 `;
 
 export const Title = styled.h3`
   text-align: center;
-  margin-top: 20px;
-
-  @media screen and (min-width: 768px) {
-    margin-top: 35px;
-  }
 `;
 
 export const FormikForm = styled(Form)`
@@ -49,6 +44,7 @@ export const FormikForm = styled(Form)`
 export const FormLabel = styled.label`
   margin-left: auto;
   margin-right: auto;
+  height: 102px;
 
   &:nth-child(2) {
     margin-top: 10px;
@@ -59,6 +55,8 @@ export const FormikField = styled(Field)`
   display: flex;
   align-items: center;
   margin-top: 10px;
+  margin-bottom: 5px;
+
   padding: 8px;
   width: 200px;
   height: 34px;
@@ -82,7 +80,14 @@ export const FormikField = styled(Field)`
   }
 `;
 
-export const FormikError = styled(ErrorMessage)``;
+export const FormikError = styled(ErrorMessage)`
+  color: black;
+  font-size: 14px;
+
+  @media screen and (min-width: 768px) {
+    font-size: 16px;
+  }
+`;
 
 export const Button = styled.button`
   display: flex;
@@ -90,7 +95,7 @@ export const Button = styled.button`
   justify-content: center;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 25px;
+  margin-top: 15px;
   padding: 0 10px;
 
   width: 100px;
@@ -98,7 +103,6 @@ export const Button = styled.button`
   font-size: 14px;
 
   @media screen and (min-width: 768px) {
-    margin-top: 35px;
     width: 120px;
     height: 35px;
     font-size: 16px;

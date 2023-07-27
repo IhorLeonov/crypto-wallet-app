@@ -1,11 +1,12 @@
 import { Formik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  selectPaymentData,
+  // selectPaymentData,
   selectIsLoadingSend,
 } from "../../redux/wallet/selectors";
 import { send } from "../../redux/wallet/operations";
 import { Loader } from "../Loader/Loader";
+import * as Yup from "yup";
 
 import {
   Wrapper,
@@ -13,18 +14,29 @@ import {
   Title,
   FormikField,
   FormLabel,
+  FormikError,
   Button,
 } from "./TransferForm.styled";
+
+const adressRegExp = /^0x[a-fA-F0-9]{40}$/;
+
+const schema = Yup.object().shape({
+  address: Yup.string()
+    .matches(adressRegExp, "Address is not valid!")
+    .required("Required!")
+    .trim(),
+  ether: Yup.number().required("Required!"),
+});
 
 export const TransferForm = () => {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectIsLoadingSend);
-  const paymentData = useSelector(selectPaymentData);
+  // const paymentData = useSelector(selectPaymentData);
 
-  if (paymentData.hash)
-    console.log(
-      `https://explorer.bitquery.io/ru/goerli/tx/${paymentData.hash}`
-    );
+  // if (paymentData.hash)
+  //   console.log(
+  //     `https://explorer.bitquery.io/ru/goerli/tx/${paymentData.hash}`
+  //   );
 
   const handleSubmit = async (address, ether) => {
     if (!window.ethereum)
@@ -41,7 +53,7 @@ export const TransferForm = () => {
   return (
     <Formik
       initialValues={{ address: "", ether: "" }}
-      // validationSchema={}
+      validationSchema={schema}
       onSubmit={(values, actions) => {
         const { address, ether } = values;
 
@@ -59,7 +71,7 @@ export const TransferForm = () => {
               name="address"
               // title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
             />
-            {/* <ErrorMessage name="name" component="span" /> */}
+            <FormikError name="address" component="span" />
           </FormLabel>
           <FormLabel>
             Enter token amount:
@@ -69,7 +81,7 @@ export const TransferForm = () => {
               step="0.001"
               // title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             />
-            {/* <ErrorMessage name="number" component="span" /> */}
+            <FormikError name="ether" component="span" />
           </FormLabel>
           <Button type="submit">
             {isLoading ? <Loader width={22} color={"#ffffff"} /> : "Send"}
