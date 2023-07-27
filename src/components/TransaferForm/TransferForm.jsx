@@ -1,12 +1,13 @@
 import { Formik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  // selectPaymentData,
-  selectIsLoadingSend,
-} from "../../redux/wallet/selectors";
 import { send } from "../../redux/wallet/operations";
 import { Loader } from "../Loader/Loader";
 import * as Yup from "yup";
+
+import {
+  selectPaymentData,
+  selectIsLoadingSend,
+} from "../../redux/wallet/selectors";
 
 import {
   Wrapper,
@@ -31,12 +32,12 @@ const schema = Yup.object().shape({
 export const TransferForm = () => {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectIsLoadingSend);
-  // const paymentData = useSelector(selectPaymentData);
+  const { hash } = useSelector(selectPaymentData);
 
-  // if (paymentData.hash)
-  //   console.log(
-  //     `https://explorer.bitquery.io/ru/goerli/tx/${paymentData.hash}`
-  //   );
+  const firstHalf = hash.slice(0, 32).trim();
+  const secondHalf = hash.slice(32);
+
+  console.log(firstHalf, secondHalf);
 
   const handleSubmit = async (address, ether) => {
     if (!window.ethereum)
@@ -86,6 +87,24 @@ export const TransferForm = () => {
           <Button type="submit">
             {isLoading ? <Loader width={22} color={"#ffffff"} /> : "Send"}
           </Button>
+
+          {hash && (
+            <div
+              style={{
+                padding: 10,
+                backgroundColor: "#12232f",
+                borderTop: "1px solid white",
+                borderBottom: "1px solid white",
+                textAlign: "center",
+                marginTop: 20,
+                overflow: "auto",
+              }}
+            >
+              Check your transaction with hash:{" "}
+              <p style={{ color: "#18d685" }}>{firstHalf}</p>
+              <p style={{ color: "#18d685" }}>{secondHalf}</p>
+            </div>
+          )}
         </FormikForm>
       </Wrapper>
     </Formik>

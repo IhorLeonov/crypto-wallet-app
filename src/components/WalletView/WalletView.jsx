@@ -4,17 +4,21 @@ import { useDispatch, useSelector } from "react-redux";
 import { connect } from "../../redux/wallet/operations";
 import { selectUser } from "../../redux/wallet/selectors";
 import { ConnectBtn, AccentData, BoldAccent } from "./WalletView.styled";
-import toast, { Toaster } from "react-hot-toast";
+
+import toast from "react-hot-toast";
 
 export const WalletView = () => {
+  const { userBalance, userAccount, userChain } = useSelector(selectUser);
+
   const dispatch = useDispatch();
   const hasMetamask = window.ethereum;
 
-  const { userBalance, userAccount, userChain } = useSelector(selectUser);
+  const handleChainChanged = () => {
+    window.location.reload();
+  };
 
-  // const isMobileDevice = () => {
-  //   return "ontouchstart" in window || "onmsgesturechange" in window;
-  // };
+  const deepLinkURL =
+    "https://metamask.app.link/dapp/crypto-wallet-app-ihorleonov.vercel.app/";
 
   const formattedBalance = userBalance
     ? Number(ethers.utils.formatEther(userBalance)).toFixed(3)
@@ -31,17 +35,10 @@ export const WalletView = () => {
     else return userChain[0].toUpperCase() + userChain.slice(1);
   };
 
-  const handleChainChanged = () => {
-    window.location.reload();
-  };
-
-  const deepLinkURL =
-    "https://metamask.app.link/dapp/crypto-wallet-app-ihorleonov.vercel.app/";
-
   const handleConnect = () => {
     if (!hasMetamask) {
       toast.success(
-        "After installing Metamask reload page on web and click Get Metamask again on mobile!",
+        'After installing Metamask reload page on web and click "Get Metamask" again on mobile!',
         { duration: Infinity }
       );
       window.open(deepLinkURL);
@@ -59,7 +56,6 @@ export const WalletView = () => {
     <ConnectBtn onClick={handleConnect}>
       {userAccount ? (
         <>
-          {/* <Toaster toastOptions={{ duration: Infinity }} /> */}
           <BoldAccent>{formattedChain()}</BoldAccent>
           &nbsp;Balance:&nbsp;
           <AccentData>{formattedBalance}</AccentData>
