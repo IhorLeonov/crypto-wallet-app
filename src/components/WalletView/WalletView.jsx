@@ -10,6 +10,8 @@ console.log(window.ethereum);
 
 export const WalletView = () => {
   const dispatch = useDispatch();
+  const hasMetamask = window.ethereum;
+  const buttonText = hasMetamask ? "Connect Wallet" : "Install Metamask";
 
   const { userBalance, userAccount, userChain } = useSelector(selectUser);
 
@@ -40,13 +42,10 @@ export const WalletView = () => {
     "https://metamask.app.link/dapp/crypto-wallet-app-ihorleonov.vercel.app/";
 
   const handleConnect = () => {
-    if (!window.ethereum) {
+    if (!hasMetamask) {
       window.open(deepLinkURL);
       window.location.reload();
-      // } else if (!window.ethereum && !isMobileDevice) {
-      //   toast.error("Install Metamask!");
-    }
-    dispatch(connect());
+    } else dispatch(connect());
   };
 
   useEffect(() => {
@@ -68,7 +67,7 @@ export const WalletView = () => {
           <AccentData>{formattedAccount}</AccentData>
         </>
       ) : (
-        "Connect Wallet"
+        buttonText
       )}
     </ConnectBtn>
   );
