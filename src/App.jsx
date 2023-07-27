@@ -29,6 +29,8 @@ function App() {
     if (message) toast.success(message);
     if (error && error.length < 100) toast.error(error);
     if (error.includes("rejected")) toast.error("User rejected transaction");
+    if (error.includes("insufficient"))
+      toast.error("Not enough funds for transaction");
   }, [message, error]);
 
   return (

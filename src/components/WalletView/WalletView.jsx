@@ -5,8 +5,6 @@ import { connect } from "../../redux/wallet/operations";
 import { selectUser } from "../../redux/wallet/selectors";
 import { ConnectBtn, AccentData, BoldAccent } from "./WalletView.styled";
 
-// import toast from "react-hot-toast";
-
 export const WalletView = () => {
   const dispatch = useDispatch();
   const hasMetamask = window.ethereum;
