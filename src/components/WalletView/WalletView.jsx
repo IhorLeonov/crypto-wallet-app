@@ -10,10 +10,10 @@ export const WalletView = () => {
 
   const { userBalance, userAccount, userChain } = useSelector(selectUser);
 
-  const mobileDevice =
-    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-      navigator.userAgent
-    );
+  // const mobileDevice =
+  //   /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+  //     navigator.userAgent
+  //   );
 
   const formattedBalance = userBalance
     ? Number(ethers.utils.formatEther(userBalance)).toFixed(3)
@@ -42,8 +42,8 @@ export const WalletView = () => {
     dispatch(connect());
   };
 
-  const deepLinkURL =
-    "mydapp://connect?network=1&url=https://crypto-wallet-app-ihorleonov.vercel.app/";
+  // const deepLinkURL =
+  //   "https://metamask.app.link/dapp/crypto-wallet-app-ihorleonov.vercel.app/";
 
   // const handleMobileConnect = () => {
   //   window.location.href(deepLinkURL);
@@ -58,7 +58,7 @@ export const WalletView = () => {
 
   return (
     <>
-      <a href="mydapp://connect?network=1&url=https://crypto-wallet-app-ihorleonov.vercel.app/">
+      <a href="https://metamask.app.link/dapp/crypto-wallet-app-ihorleonov.vercel.app/">
         metamask.app
       </a>
       <ConnectBtn onClick={handleConnect}>
