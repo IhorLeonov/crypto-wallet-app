@@ -5,12 +5,13 @@ import { WalletView } from "./components/WalletView/WalletView";
 import { Logo } from "./components/Logo/Logo";
 import { Loader } from "./components/Loader/Loader";
 import { useEffect } from "react";
+import toast, { Toaster } from "react-hot-toast";
+
 import {
   selectIsLoading,
   selectMessage,
   selectError,
 } from "./redux/wallet/selectors";
-import toast, { Toaster } from "react-hot-toast";
 
 const loaderStyles = {
   position: "absolute",

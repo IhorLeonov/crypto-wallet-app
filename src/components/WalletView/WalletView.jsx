@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { connect } from "../../redux/wallet/operations";
 import { selectUser } from "../../redux/wallet/selectors";
 import { ConnectBtn, AccentData, BoldAccent } from "./WalletView.styled";
+import toast from "react-hot-toast";
 
 export const WalletView = () => {
   const dispatch = useDispatch();
@@ -36,15 +37,11 @@ export const WalletView = () => {
   const deepLinkURL =
     "https://metamask.app.link/dapp/crypto-wallet-app-ihorleonov.vercel.app/";
 
-  // const handleMobileConnect = () => {
-  //   window.location.href = deepLinkURL;
-  // };
-
   const handleConnect = () => {
     if (isMobileDevice && !window.ethereum) {
       window.open(deepLinkURL);
     } else if (!window.ethereum && !isMobileDevice) {
-      alert("Install Metamask!");
+      toast.error("Install Metamask!");
     }
     dispatch(connect());
   };
