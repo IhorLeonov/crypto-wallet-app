@@ -48,10 +48,10 @@ export const WalletView = () => {
     if (touchDevice) {
       handleMobileConnect();
     }
-    if (!window.ethereum) {
-      alert("Install Metamask!");
-      // return;
-    }
+    // if (!window.ethereum) {
+    //   alert("Install Metamask!");
+    //   return;
+    // }
     dispatch(connect());
   };
 
