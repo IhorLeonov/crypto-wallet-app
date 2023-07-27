@@ -11,13 +11,13 @@ export const WalletView = () => {
 
   const { userBalance, userAccount, userChain } = useSelector(selectUser);
 
-  // const mobileDevice =
-  //   /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-  //     navigator.userAgent
-  //   );
+  // const touchDevice = "ontouchstart" in document.documentElement;
+  // console.log(touchDevice);
 
-  const touchDevice = "ontouchstart" in document.documentElement;
-  console.log(touchDevice);
+  function isMobileDevice() {
+    return "ontouchstart" in window || "onmsgesturechange" in window;
+  }
+  console.log(isMobileDevice);
 
   const formattedBalance = userBalance
     ? Number(ethers.utils.formatEther(userBalance)).toFixed(3)
@@ -41,15 +41,21 @@ export const WalletView = () => {
   const deepLinkURL =
     "https://metamask.app.link/dapp/crypto-wallet-app-ihorleonov.vercel.app/";
 
-  const handleMobileConnect = () => {
-    window.location.href = deepLinkURL;
-  };
+  // const handleMobileConnect = () => {
+  //   window.location.href = deepLinkURL;
+  // };
 
   const handleConnect = () => {
-    if (touchDevice && !visitedLink) {
-      handleMobileConnect();
-      setVisitedLink(true);
+    if (isMobileDevice()) {
+      window.open(deepLinkURL);
+    } else {
+      window.open("https://metamask.io/", "_blank");
     }
+
+    // if (touchDevice && !visitedLink) {
+    //   handleMobileConnect();
+    //   setVisitedLink(true);
+    // }
     // if (!window.ethereum) {
     //   alert("Install Metamask!");
     //   return;
