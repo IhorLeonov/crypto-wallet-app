@@ -5,13 +5,6 @@ export const connect = createAsyncThunk(
   "wallet/connect",
   async (_, thunkAPI) => {
     try {
-      // const { ethereum } = window;
-      // if (ethereum && ethereum.isMetaMask) {
-      //   console.log("Ethereum successfully detected!");
-      // } else {
-      //   console.log("Please install MetaMask!");
-      // }
-
       const account = await window.ethereum.request({
         method: "eth_requestAccounts",
       });

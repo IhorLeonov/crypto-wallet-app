@@ -1,13 +1,8 @@
 import styled from "styled-components";
 
 export const LogoWrapper = styled.div`
-  margin-top: 30px;
-  margin-bottom: 30px;
-
-  @media screen and (min-width: 375px) {
-    margin-top: 50px;
-    margin-bottom: 50px;
-  }
+  margin-top: 15px;
+  margin-bottom: 15px;
 
   @media screen and (min-width: 768px) {
     margin: 0;

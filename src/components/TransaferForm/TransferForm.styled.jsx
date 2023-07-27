@@ -34,10 +34,10 @@ export const FormikForm = styled(Form)`
 
   margin-left: auto;
   margin-right: auto;
-  margin-top: 25px;
+  margin-top: 15px;
 
   @media screen and (min-width: 768px) {
-    margin-top: 30px;
+    margin-top: 20px;
   }
 `;
 
@@ -95,7 +95,7 @@ export const Button = styled.button`
   justify-content: center;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 15px;
+  margin-top: 10px;
   padding: 0 10px;
 
   width: 100px;
@@ -107,4 +107,14 @@ export const Button = styled.button`
     height: 35px;
     font-size: 16px;
   }
+`;
+
+export const Message = styled.div`
+  padding: 10px;
+  background-color: #12232f;
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
+  text-align: center;
+  margin-top: 20px;
+  overflow: auto;
 `;

@@ -7,7 +7,7 @@ export const Header = styled.header`
   padding: 0 15px;
 
   width: 100%;
-  height: 50px;
+  height: 60px;
 
   @media screen and (min-width: 500px) {
     padding: 0 25px;
@@ -35,6 +35,20 @@ export const Footer = styled.footer`
   align-items: center;
   justify-content: center;
 
-  height: 50px;
+  height: 60px;
   color: ${(props) => props.theme.colors.backgroundColor};
+`;
+
+export const GhLink = styled.a`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 600;
+  color: ${(props) => props.theme.colors.backgroundColor};
+
+  &:hover,
+  &:focus {
+    color: ${(props) => props.theme.colors.secondAccentColor};
+  }
 `;

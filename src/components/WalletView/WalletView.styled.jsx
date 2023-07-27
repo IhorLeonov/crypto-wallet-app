@@ -33,3 +33,23 @@ export const BoldAccent = styled.div`
     display: none;
   }
 `;
+
+export const DisconnectBtn = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin-left: 10px;
+  border: none;
+  background-color: transparent;
+  height: 30px;
+
+  @media screen and (min-width: 768px) {
+    height: 35px;
+  }
+
+  &:hover,
+  &:focus {
+    color: ${(props) => props.theme.colors.accentColor};
+  }
+`;

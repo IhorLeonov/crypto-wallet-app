@@ -13,7 +13,12 @@ const initialState = {
 const connectWalletSlice = createSlice({
   name: "connectWallet",
   initialState,
-
+  reducers: {
+    handleReset: (state) => {
+      state.userData = { userAccount: "", userBalance: "", userChain: "" };
+      state.paymentData = { ether: "", address: "", hash: "" };
+    },
+  },
   extraReducers: (builder) =>
     builder
       .addCase(connect.pending, (state) => {
@@ -47,3 +52,4 @@ const connectWalletSlice = createSlice({
 });
 
 export const connectWalletReducer = connectWalletSlice.reducer;
+export const { handleReset } = connectWalletSlice.actions;

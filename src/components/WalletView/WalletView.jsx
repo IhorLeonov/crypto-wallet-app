@@ -3,9 +3,17 @@ import { ethers } from "ethers";
 import { useDispatch, useSelector } from "react-redux";
 import { connect } from "../../redux/wallet/operations";
 import { selectUser } from "../../redux/wallet/selectors";
-import { ConnectBtn, AccentData, BoldAccent } from "./WalletView.styled";
+import { handleReset } from "../../redux/wallet/walletSlice";
+import { FiLogOut } from "react-icons/fi";
 
 import toast from "react-hot-toast";
+
+import {
+  ConnectBtn,
+  AccentData,
+  BoldAccent,
+  DisconnectBtn,
+} from "./WalletView.styled";
 
 export const WalletView = () => {
   const { userBalance, userAccount, userChain } = useSelector(selectUser);
@@ -45,29 +53,40 @@ export const WalletView = () => {
     } else dispatch(connect());
   };
 
+  const handleDisconnect = () => {
+    dispatch(handleReset());
+  };
+
   useEffect(() => {
     if (window.ethereum) {
       window.ethereum.on("accountsChanged", handleConnect);
       window.ethereum.on("chainChanged", handleChainChanged);
     }
-  }, []);
+  });
 
   return (
-    <ConnectBtn onClick={handleConnect}>
-      {userAccount ? (
-        <>
-          <BoldAccent>{formattedChain()}</BoldAccent>
-          &nbsp;Balance:&nbsp;
-          <AccentData>{formattedBalance}</AccentData>
-          <BoldAccent>&nbsp;ETH</BoldAccent>
-          &nbsp;Account:&nbsp;
-          <AccentData>{formattedAccount}</AccentData>
-        </>
-      ) : hasMetamask ? (
-        "Connect Wallet"
-      ) : (
-        "Get Metamask"
+    <>
+      <ConnectBtn onClick={handleConnect}>
+        {userAccount ? (
+          <>
+            <BoldAccent>{formattedChain()}</BoldAccent>
+            &nbsp;Balance:&nbsp;
+            <AccentData>{formattedBalance}</AccentData>
+            <BoldAccent>&nbsp;ETH</BoldAccent>
+            &nbsp;Account:&nbsp;
+            <AccentData>{formattedAccount}</AccentData>
+          </>
+        ) : hasMetamask ? (
+          "Connect Wallet"
+        ) : (
+          "Get Metamask"
+        )}
+      </ConnectBtn>
+      {userAccount && (
+        <DisconnectBtn onClick={handleDisconnect}>
+          <FiLogOut size={22} />
+        </DisconnectBtn>
       )}
-    </ConnectBtn>
+    </>
   );
 };
