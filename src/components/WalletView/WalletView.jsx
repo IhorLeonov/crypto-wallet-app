@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { ethers } from "ethers";
 import { useDispatch, useSelector } from "react-redux";
 import { connect } from "../../redux/wallet/operations";
@@ -7,6 +7,7 @@ import { ConnectBtn, AccentData, BoldAccent } from "./WalletView.styled";
 
 export const WalletView = () => {
   const dispatch = useDispatch();
+  const [visitedLink, setVisitedLink] = useState(false);
 
   const { userBalance, userAccount, userChain } = useSelector(selectUser);
 
@@ -45,8 +46,9 @@ export const WalletView = () => {
   };
 
   const handleConnect = () => {
-    if (touchDevice) {
+    if (touchDevice && !visitedLink) {
       handleMobileConnect();
+      setVisitedLink(true);
     }
     // if (!window.ethereum) {
     //   alert("Install Metamask!");
