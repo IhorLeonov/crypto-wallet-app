@@ -17,7 +17,7 @@ export const WalletView = () => {
   function isMobileDevice() {
     return "ontouchstart" in window || "onmsgesturechange" in window;
   }
-  console.log(isMobileDevice);
+  // console.log(isMobileDevice);
 
   const formattedBalance = userBalance
     ? Number(ethers.utils.formatEther(userBalance)).toFixed(3)
@@ -49,7 +49,8 @@ export const WalletView = () => {
     if (isMobileDevice()) {
       window.open(deepLinkURL);
     } else {
-      window.open("https://metamask.io/", "_blank");
+      // window.open("https://metamask.io/", "_blank");
+      dispatch(connect());
     }
 
     // if (touchDevice && !visitedLink) {
@@ -60,7 +61,7 @@ export const WalletView = () => {
     //   alert("Install Metamask!");
     //   return;
     // }
-    dispatch(connect());
+    // dispatch(connect());
   };
 
   useEffect(() => {
