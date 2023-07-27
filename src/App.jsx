@@ -26,7 +26,7 @@ function App() {
 
   useEffect(() => {
     if (message) toast.success(message);
-    if (error && !error.includes("rejected")) toast.error(error);
+    if (error && error.length < 100) toast.error(error);
     if (error.includes("rejected")) toast.error("User rejected transaction");
   }, [message, error]);
 
