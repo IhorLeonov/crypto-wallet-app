@@ -36,18 +36,19 @@ export const WalletView = () => {
 
   const handleConnect = () => {
     if (!window.ethereum) {
-      alert("Install Metamask!");
+      // alert("Install Metamask!");
+      handleMobileConnect();
       return;
     }
     dispatch(connect());
   };
 
-  // const deepLinkURL =
-  //   "https://metamask.app.link/dapp/crypto-wallet-app-ihorleonov.vercel.app/";
+  const deepLinkURL =
+    "https://metamask.app.link/dapp/crypto-wallet-app-ihorleonov.vercel.app/";
 
-  // const handleMobileConnect = () => {
-  //   window.location.href(deepLinkURL);
-  // };
+  const handleMobileConnect = () => {
+    window.location.href(deepLinkURL);
+  };
 
   useEffect(() => {
     if (window.ethereum) {
