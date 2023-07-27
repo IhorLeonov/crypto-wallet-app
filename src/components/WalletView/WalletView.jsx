@@ -41,8 +41,8 @@ export const WalletView = () => {
 
   const handleConnect = () => {
     if (!window.ethereum) {
-      window.open(deepLinkURL);
       window.location.reload();
+      window.open(deepLinkURL);
       // } else if (!window.ethereum && !isMobileDevice) {
       //   toast.error("Install Metamask!");
     }
