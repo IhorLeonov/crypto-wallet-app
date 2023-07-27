@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { ethers } from "ethers";
 import { useDispatch, useSelector } from "react-redux";
 import { connect } from "../../redux/wallet/operations";
@@ -10,8 +10,14 @@ console.log(window.ethereum);
 
 export const WalletView = () => {
   const dispatch = useDispatch();
-  const hasMetamask = window.ethereum;
-  const buttonText = hasMetamask ? "Connect Wallet" : "Install Metamask";
+  const [hasMetamask, setHasMetamask] = useState(window.ethereum);
+
+  if (!hasMetamask) {
+    setInterval(() => {
+      console.log(window.ethereum);
+      setHasMetamask(window.ethereum);
+    }, 5000);
+  }
 
   const { userBalance, userAccount, userChain } = useSelector(selectUser);
 
@@ -44,7 +50,7 @@ export const WalletView = () => {
   const handleConnect = () => {
     if (!hasMetamask) {
       window.open(deepLinkURL);
-      window.location.reload();
+      // window.location.reload();
     } else dispatch(connect());
   };
 
@@ -66,8 +72,10 @@ export const WalletView = () => {
           &nbsp;Account:&nbsp;
           <AccentData>{formattedAccount}</AccentData>
         </>
+      ) : hasMetamask ? (
+        "Connect Wallet"
       ) : (
-        buttonText
+        "Install Metamask"
       )}
     </ConnectBtn>
   );
