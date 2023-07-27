@@ -46,7 +46,7 @@ export const WalletView = () => {
   // };
 
   const handleConnect = () => {
-    if (isMobileDevice()) {
+    if (isMobileDevice() && !window.ethereum) {
       window.open(deepLinkURL);
     } else {
       // window.open("https://metamask.io/", "_blank");
