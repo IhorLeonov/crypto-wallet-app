@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { connect } from "../../redux/wallet/operations";
 import { selectUser } from "../../redux/wallet/selectors";
 import { ConnectBtn, AccentData, BoldAccent } from "./WalletView.styled";
+import toast, { Toaster } from "react-hot-toast";
 
 export const WalletView = () => {
   const dispatch = useDispatch();
@@ -39,6 +40,9 @@ export const WalletView = () => {
 
   const handleConnect = () => {
     if (!hasMetamask) {
+      toast.success(
+        "After installing Metamask reload page on web and click Get Metamask again on mobile!"
+      );
       window.open(deepLinkURL);
     } else dispatch(connect());
   };
@@ -54,6 +58,7 @@ export const WalletView = () => {
     <ConnectBtn onClick={handleConnect}>
       {userAccount ? (
         <>
+          <Toaster toastOptions={{ duration: Infinity }} />
           <BoldAccent>{formattedChain()}</BoldAccent>
           &nbsp;Balance:&nbsp;
           <AccentData>{formattedBalance}</AccentData>
