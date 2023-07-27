@@ -4,16 +4,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { connect } from "../../redux/wallet/operations";
 import { selectUser } from "../../redux/wallet/selectors";
 import { ConnectBtn, AccentData, BoldAccent } from "./WalletView.styled";
-import toast from "react-hot-toast";
+// import toast from "react-hot-toast";
+
+console.log(window.ethereum);
 
 export const WalletView = () => {
   const dispatch = useDispatch();
 
   const { userBalance, userAccount, userChain } = useSelector(selectUser);
 
-  const isMobileDevice = () => {
-    return "ontouchstart" in window || "onmsgesturechange" in window;
-  };
+  // const isMobileDevice = () => {
+  //   return "ontouchstart" in window || "onmsgesturechange" in window;
+  // };
 
   const formattedBalance = userBalance
     ? Number(ethers.utils.formatEther(userBalance)).toFixed(3)
@@ -38,10 +40,11 @@ export const WalletView = () => {
     "https://metamask.app.link/dapp/crypto-wallet-app-ihorleonov.vercel.app/";
 
   const handleConnect = () => {
-    if (isMobileDevice && !window.ethereum) {
+    if (!window.ethereum) {
       window.open(deepLinkURL);
-    } else if (!window.ethereum && !isMobileDevice) {
-      toast.error("Install Metamask!");
+      window.location.reload();
+      // } else if (!window.ethereum && !isMobileDevice) {
+      //   toast.error("Install Metamask!");
     }
     dispatch(connect());
   };
