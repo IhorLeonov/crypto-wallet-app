@@ -43,7 +43,7 @@ export const WalletView = () => {
   };
 
   const deepLinkURL =
-    "mydapp://connect?network=1&url=hhttps://crypto-wallet-app-ihorleonov.vercel.app/";
+    "mydapp://connect?network=1&url=https://crypto-wallet-app-ihorleonov.vercel.app/";
 
   const handleMobileConnect = () => {
     window.location.href(deepLinkURL);
@@ -58,7 +58,9 @@ export const WalletView = () => {
 
   return (
     <>
-      <a href={deepLinkURL}>metamask.app</a>
+      <a href="mydapp://connect?network=1&url=https://crypto-wallet-app-ihorleonov.vercel.app/">
+        metamask.app
+      </a>
       <ConnectBtn onClick={mobileDevice ? handleMobileConnect : handleConnect}>
         {userAccount ? (
           <>
