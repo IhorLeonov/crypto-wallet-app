@@ -64,7 +64,7 @@ export const WalletView = () => {
       ) : hasMetamask ? (
         "Connect Wallet"
       ) : (
-        "Install Metamask"
+        "Get Metamask"
       )}
     </ConnectBtn>
   );
