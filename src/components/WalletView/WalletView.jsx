@@ -41,7 +41,8 @@ export const WalletView = () => {
   const handleConnect = () => {
     if (!hasMetamask) {
       toast.success(
-        "After installing Metamask reload page on web and click Get Metamask again on mobile!"
+        "After installing Metamask reload page on web and click Get Metamask again on mobile!",
+        { duration: Infinity }
       );
       window.open(deepLinkURL);
     } else dispatch(connect());
@@ -58,7 +59,7 @@ export const WalletView = () => {
     <ConnectBtn onClick={handleConnect}>
       {userAccount ? (
         <>
-          <Toaster toastOptions={{ duration: Infinity }} />
+          {/* <Toaster toastOptions={{ duration: Infinity }} /> */}
           <BoldAccent>{formattedChain()}</BoldAccent>
           &nbsp;Balance:&nbsp;
           <AccentData>{formattedBalance}</AccentData>
