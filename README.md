@@ -16,7 +16,7 @@ The app uses Metamask to connect to the Ethereum network and perform transaction
 - git clone https://github.com/IhorLeonov/crypto-wallet-app
 - cd crypto-wallet-app
 
-### 2. Install the dependencies using npm or yarn:
+### 2. Install the dependencies:
 
 - npm install
 
