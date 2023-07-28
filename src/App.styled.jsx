@@ -4,10 +4,10 @@ export const Header = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-around;
-  padding: 0 15px;
+  padding: 0 30px;
 
   width: 100%;
-  height: 60px;
+  height: 80px;
 
   @media screen and (min-width: 500px) {
     padding: 0 25px;
@@ -19,14 +19,11 @@ export const Header = styled.header`
 `;
 
 export const Main = styled.main`
-  height: calc(100vh - 100px);
+  height: calc(100vh - 140px);
   display: flex;
   align-items: center;
   flex-direction: column;
-
-  @media screen and (min-width: 768px) {
-    justify-content: center;
-  }
+  justify-content: center;
 `;
 
 export const Footer = styled.footer`

@@ -33,6 +33,10 @@ const isValidEthereumAddress = (value) => {
   return ethers.utils.isAddress(value);
 };
 
+const numberInRange = (value) => {
+  return value >= 0.000001 && value <= 100000;
+};
+
 const schema = Yup.object().shape({
   address: Yup.string()
     .trim()
@@ -42,7 +46,13 @@ const schema = Yup.object().shape({
       isValidEthereumAddress
     )
     .required("Required!"),
-  ether: Yup.number().required("Required!"),
+  ether: Yup.number()
+    .test(
+      "inRange",
+      "Amount must be in range 0.000001 to 100000",
+      numberInRange
+    )
+    .required("Required!"),
 });
 
 export const TransferForm = () => {
@@ -91,7 +101,7 @@ export const TransferForm = () => {
           </FormLabel>
           <FormLabel>
             Enter token amount:
-            <FormikField type="number" name="ether" step="0.0001" />
+            <FormikField type="number" name="ether" step="0.000001" />
             <FormikError name="ether" component="span" />
           </FormLabel>
           <Button type="submit">

@@ -37,10 +37,10 @@ function App() {
   return (
     <>
       <Header>
+        <Logo width={35} height={50} />
         <WalletView />
       </Header>
       <Main>
-        <Logo width={40} height={60} />
         <TransferForm />
       </Main>
       <Footer>

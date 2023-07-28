@@ -1,5 +1,5 @@
 import logo from "../../assets/images/eth-logo.png";
-import { LogoWrapper } from "./Logo.styled";
+import { LogoWrapper, LogoTitle } from "./Logo.styled";
 
 export const Logo = ({ width, height }) => {
   return (
@@ -9,6 +9,7 @@ export const Logo = ({ width, height }) => {
         src={logo}
         alt="Ethereum-logo"
       />
+      <LogoTitle style={{ marginLeft: 15 }}>cryptoMachine</LogoTitle>
     </LogoWrapper>
   );
 };

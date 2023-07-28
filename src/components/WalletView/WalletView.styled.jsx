@@ -39,7 +39,7 @@ export const DisconnectBtn = styled.button`
   align-items: center;
   justify-content: center;
   padding: 0;
-  margin-left: 10px;
+  margin-left: 15px;
   border: none;
   background-color: transparent;
   height: 30px;

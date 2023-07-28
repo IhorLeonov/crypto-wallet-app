@@ -1,13 +1,16 @@
 import styled from "styled-components";
 
 export const LogoWrapper = styled.div`
-  margin-top: 15px;
-  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+`;
 
-  @media screen and (min-width: 768px) {
-    margin: 0;
-    position: absolute;
-    left: 50px;
-    top: 100px;
+export const LogoTitle = styled.div`
+  color: ${(props) => props.theme.colors.secondAccentColor};
+  font-size: 20px;
+  font-weight: 600;
+
+  @media screen and (max-width: 620px) {
+    display: none;
   }
 `;
