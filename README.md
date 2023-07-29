@@ -1,6 +1,6 @@
 # crypto-wallet-app
 
-This application was built with Vite, React.js, Redux, and Ethers.js, allowing users to interact with smart contracts on the Ethereum blockchain. 
+This application was built with Vite, React.js, Redux, Ethers.js, and allows users to interact with smart contracts on the Ethereum blockchain. 
 The app uses Metamask to connect to the Ethereum network and perform transactions.
 
 ## Before running the application, make sure you have the following installed:
