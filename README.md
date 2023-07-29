@@ -13,7 +13,7 @@ The app uses Metamask to connect to the Ethereum network and perform transaction
 
 ### 1. Clone this repository to your local machine:
 
-- git clone https://github.com/IhorLeonov/crypto-wallet-app
+- git clone [https://github.com/IhorLeonov/crypto-wallet-app](https://github.com/IhorLeonov/crypto-wallet-app.git)
 - cd crypto-wallet-app
 
 ### 2. Install the dependencies:
