@@ -56,7 +56,7 @@ function App() {
       {isLoading && (
         <Loader style={loaderStyles} width={65} color={"#12232f"} />
       )}
-      <Toaster toastOptions={{ duration: 4000 }} />
+      <Toaster toastOptions={{ duration: 4000 }} position="bottom-center" />
     </>
   );
 }
